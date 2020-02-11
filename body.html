@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
     <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
     <title>body</title>
 
     <style>
@@ -145,16 +146,14 @@
             } 
            }
         </style>
-</head>
+</head> -->
 <body>
-
     <div class='wrapper'>
         <div class='photo-header'>
-            <img>
+            <img id='photo'>
             <h1>Hi!</h1>
             <h2>My name is </h2>
             <h4>Currently @</h4>
-
         </div>
         <div class='container main'>
             <div class='row text-center'>
@@ -164,16 +163,26 @@
                     </div>
                 </div>
                 <div class='col-lg-6'>
-                    <div class='row card'>Public Repositories</div>
-                    <div class='row card'>Github Stars</div>
+                    <div class='row card'>Public Repositories
+                        <span id='repos'></span>
+                    </div>
+                    <div class='row card'>Github Stars
+                        <span id=''></span>
+                    </div>
                 </div>
                 <div class='col-lg-6'>
-                    <div class='row card'>Followers</div>
-                    <div class='row card'>Following</div>
+                    <div class='row card'>Followers
+                        <span id=''></span>
+                    </div>
+                    <div class='row card'>Following
+                        <span id=''></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

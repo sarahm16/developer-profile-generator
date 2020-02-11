@@ -20,25 +20,37 @@ inquirer.prompt(
         }
     ]
 ).then(function(data) {
+    
+    //construct resume.html
+    const resume = variables.generateHTML(data);
+    fs.writeFile('resume.html', resume, function(err) {
+        if(err) throw err;
+    })
+    
+    //append body.html to resume.html
+    fs.readFile('./body.html', 'utf8', function(err, content) {
+        fs.appendFile('resume.html', content, function(err) {
+            if(err) throw err;
+        });
+    });
+
+    return data;
+
+}).then(function(data) {
     const userName = data.username;
     const queryURL = `https://api.github.com/users/${userName}/repos?per_page=100`;
-    const resume = variables.generateHTML(data);
-    
+
+    //github api call
     axios.get(queryURL)
-        .then(function(response) {
-            console.log(response);
-            const results = response.data[0]['owner'];
-            const avatar = results['avatar_url'];
-            //console.log(avatar);
-            const followers = results['followers_url'];
-            const following = results['followers_url'];
-            const stars = results['starred_url'];
-            //console.log(followers);
-        });
-    
-    fs.writeFile('resume.html', resume, function(err) {
-        if(err) {
-            throw err;
-        }
-     })
+    .then(function(response) {
+        //console.log(response);
+        const results = response.data[0]['owner'];
+        const avatar = results['avatar_url'];
+        //$('#photo').attr('src', avatar);
+        //console.log(avatar);
+        const followers = results['followers_url'];
+        const following = results['followers_url'];
+        const stars = results['starred_url'];
+        //console.log(followers);
+    });
 })
