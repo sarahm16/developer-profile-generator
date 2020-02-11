@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const variables = require('./generateHTML');
 const fs = require('fs');
+const axios = require('axios');
+
 console.log(typeof variables.generateHTML);
 
 inquirer.prompt(
@@ -18,13 +20,20 @@ inquirer.prompt(
         }
     ]
 ).then(function(data) {
+    const userName = data.username;
+    const queryURL = `https://api.github.com/users/${userName}/repos?per_page=100`;
     const resume = variables.generateHTML(data);
-    //console.log(data.color);
+    
+    axios.get(queryURL)
+        .then(function(response) {
+            //console.log(response.data);
+            const avatar = response.data[0]['owner']['avatar_url'];
+            console.log(avatar);
+        });
+    
     fs.writeFile('resume.html', resume, function(err) {
         if(err) {
             throw err;
         }
      })
-}).then(function(data) {
-    
 })
