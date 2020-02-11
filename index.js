@@ -26,9 +26,14 @@ inquirer.prompt(
     
     axios.get(queryURL)
         .then(function(response) {
-            //console.log(response.data);
-            const avatar = response.data[0]['owner']['avatar_url'];
-            console.log(avatar);
+            console.log(response);
+            const results = response.data[0]['owner'];
+            const avatar = results['avatar_url'];
+            //console.log(avatar);
+            const followers = results['followers_url'];
+            const following = results['followers_url'];
+            const stars = results['starred_url'];
+            //console.log(followers);
         });
     
     fs.writeFile('resume.html', resume, function(err) {
