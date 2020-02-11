@@ -18,9 +18,13 @@ inquirer.prompt(
         }
     ]
 ).then(function(data) {
+    const resume = variables.generateHTML(data);
     //console.log(data.color);
-    variables.generateHTML(data);
-    //console.log(data.color);
+    fs.writeFile('resume.html', resume, function(err) {
+        if(err) {
+            throw err;
+        }
+     })
 }).then(function(data) {
-
+    
 })
