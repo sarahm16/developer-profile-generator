@@ -180,9 +180,9 @@ const colors = {
             <h1>Hi!</h1>
             <h2>My name is <span id='name'>${response.data['name']}</span></h2>
             <div class='links-nav'>
-                <a href='' class='nav-link'><i class="fas fa-location-arrow"></i>${response.data['location']}</a>
-                <a href='${response.data['html_url']}' class='nav-link'><i class="fab fa-github-alt"></i>GitHub</a>
-                <a href='${response.data['blog']}' class='nav-link'><i class="fas fa-rss"></i>Blog</a>
+                <a href='' class='nav-link'><i class="fas fa-location-arrow"></i> ${response.data['location']}</a>
+                <a href='${response.data['html_url']}' class='nav-link'><i class="fab fa-github-alt"></i> GitHub</a>
+                <a href='${response.data['blog']}' class='nav-link'><i class="fas fa-rss"></i> Blog</a>
             </div>
         </div>
         <div class='container main'>
