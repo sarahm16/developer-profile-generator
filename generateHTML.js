@@ -25,7 +25,7 @@ const colors = {
     }
   };
   
-  function generateHTML(data) {
+  function generateHTML(data, response) {
     return `<!DOCTYPE html>
   <html lang="en">
      <head>
@@ -172,7 +172,50 @@ const colors = {
             } 
            }
         </style>
-        </head>`
+        </head>
+    <body>
+    <div class='wrapper'>
+        <div class='photo-header'>
+            <img alt='photo' src="${response.data['avatar_url']}">
+            <h1>Hi!</h1>
+            <h2>My name is <span id='name'>${response.data['name']}</span></h2>
+            <div class='links-nav'>
+                <a href='' class='nav-link'><i class="fas fa-location-arrow"></i>${response.data['location']}</a>
+                <a href='${response.data['html_url']}' class='nav-link'><i class="fab fa-github-alt"></i>GitHub</a>
+                <a href='${response.data['blog']}' class='nav-link'><i class="fas fa-rss"></i>Blog</a>
+            </div>
+        </div>
+        <div class='container main'>
+            <div class='row text-center'>
+                <div class='col-lg-12'>
+                    <div class='row'>
+                        <h2 class='text-center'>${response.data['bio']}</h2>
+                    </div>
+                </div>
+                <div class='col-lg-6'>
+                    <div class='row card'>Public Repositories
+                        <span id='repos'>${response.data['public_repos']}</span>
+                    </div>
+                    <div class='row card'>Github Stars
+                        <span id=''></span>
+                    </div>
+                </div>
+                <div class='col-lg-6'>
+                    <div class='row card'>Followers
+                        <span id=''>${response.data['followers']}</span>
+                    </div>
+                    <div class='row card'>Following
+                        <span id=''>${response.data['following']}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>`
           }
 
 module.exports = {
