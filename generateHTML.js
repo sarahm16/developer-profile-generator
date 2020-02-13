@@ -25,7 +25,7 @@ const colors = {
     }
   };
   
-  function generateHTML(data, response) {
+  function generateHTML(data, response, starCount) {
     return `<!DOCTYPE html>
   <html lang="en">
      <head>
@@ -35,6 +35,23 @@ const colors = {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
         <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+        <script type="text/javascript" src="html2canvas.js"></script>
+        <script type="text/javascript" src="canvas2image.js"></script>
+        <script type='text/javascript'>
+          let submit = function() {
+            html2canvas(document.body, {
+                useCORS: true,
+                allowTaint : false,
+                foreignObjectRendering: true,
+                onrendered: function(canvas) {
+                //document.body.appendChild(canvas);
+                Canvas2Image.saveAsJPEG(canvas);
+                }
+            });
+          };
+        </script>
+        
         <title>Resume</title>
         <style>
             @page {
@@ -172,50 +189,52 @@ const colors = {
             } 
            }
         </style>
-        </head>
+      </head>
     <body>
-    <div class='wrapper'>
-        <div class='photo-header'>
-            <img alt='photo' src="${response.data['avatar_url']}">
-            <h1>Hi!</h1>
-            <h2>My name is <span id='name'>${response.data['name']}</span></h2>
-            <div class='links-nav'>
-                <a href='' class='nav-link'><i class="fas fa-location-arrow"></i> ${response.data['location']}</a>
-                <a href='${response.data['html_url']}' class='nav-link'><i class="fab fa-github-alt"></i> GitHub</a>
-                <a href='${response.data['blog']}' class='nav-link'><i class="fas fa-rss"></i> Blog</a>
-            </div>
-        </div>
-        <div class='container main'>
-            <div class='row text-center'>
-                <div class='col-lg-12'>
-                    <div class='row'>
-                        <h2 class='text-center'>${response.data['bio']}</h2>
-                    </div>
-                </div>
-                <div class='col-lg-6'>
-                    <div class='row card'>Public Repositories
-                        <span id='repos'>${response.data['public_repos']}</span>
-                    </div>
-                    <div class='row card'>Github Stars
-                        <span id=''></span>
-                    </div>
-                </div>
-                <div class='col-lg-6'>
-                    <div class='row card'>Followers
-                        <span id=''>${response.data['followers']}</span>
-                    </div>
-                    <div class='row card'>Following
-                        <span id=''>${response.data['following']}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class='wrapper'>
+          <div class='photo-header'>
+              <img alt='photo' src="${response.data['avatar_url']}">
+              <h1>Hi!</h1>
+              <h2>My name is <span id='name'>${response.data['name']}</span></h2>
+              <div class='links-nav'>
+                  <a href='' class='nav-link'><i class="fas fa-location-arrow"></i> ${response.data['location']}</a>
+                  <a href='${response.data['html_url']}' class='nav-link'><i class="fab fa-github-alt"></i> GitHub</a>
+                  <a href='${response.data['blog']}' class='nav-link'><i class="fas fa-rss"></i> Blog</a>
+              </div>
+          </div>
+          <div class='container main'>
+              <div class='row text-center'>
+                  <div class='col-lg-12'>
+                      <div class='row'>
+                          <h2 class='text-center'>${response.data['bio']}</h2>
+                      </div>
+                  </div>
+                  <div class='col-lg-6'>
+                      <div class='row card'>Public Repositories
+                          <span>${response.data['public_repos']}</span>
+                      </div>
+                      <div class='row card'>Github Stars
+                          <span>${starCount}</span>
+                      </div>
+                  </div>
+                  <div class='col-lg-6'>
+                      <div class='row card'>Followers
+                          <span>${response.data['followers']}</span>
+                      </div>
+                      <div class='row card'>Following
+                          <span>${response.data['following']}</span>
+                      </div>
+                  </div>
+              </div>
+              <div class='row'>
+                <button id='render-pdf' onclick='submit();'>Generate PDF resume!</button>
+              </div>
+          </div>
+      </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-</body>
-</html>`
+      <script src="index.js"></script>
+    </body>
+  </html>`
           }
 
 module.exports = {

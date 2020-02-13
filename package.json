@@ -19,7 +19,7 @@
   "homepage": "https://github.com/sarahm16/developer-profile-generator#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "inquirer": "7.0.4",
-    "jquery": "^3.4.1"
+    "html2canvas": "^1.0.0-rc.5",
+    "inquirer": "7.0.4"
   }
 }
