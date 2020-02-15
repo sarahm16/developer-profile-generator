@@ -1,4 +1,4 @@
-# developer-profile-generator
+# Developer Profile Generator
 
 AS A product manager
 
@@ -13,7 +13,7 @@ At the bottom of their resume, the user may click a button to generate a pdf fro
 
 ## Technologies Used
 
-Inquirer (to prompt user)__
-html2canvas (to convert html to canvas)__
-canvas2image (to convert canvas to image)__
+Inquirer (to prompt user) <br/>
+html2canvas (to convert html to canvas) <br/>
+canvas2image (to convert canvas to image) <br/>
 axios (to make api calls to retrieve information about user from their github account)
