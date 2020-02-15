@@ -28,8 +28,7 @@ inquirer.prompt(
     axios.get(queryURL)
     .then(function(response) {
 
-        //console.log(response.data.location[0]);
-
+        //separate city and state, construct dynamic google maps link
         let word = 'firstWord';
         let city = '';
         let state = '';
