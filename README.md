@@ -17,4 +17,4 @@ Inquirer (to prompt user) <br/>
 html2canvas (to convert html to canvas) <br/>
 canvas2image (to convert canvas to image) <br/>
 axios (to make api calls to retrieve information about user from their github account)
-node.js (to build cpi application)
+node.js
