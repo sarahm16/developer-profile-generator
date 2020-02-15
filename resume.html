@@ -12,15 +12,15 @@
         <script type="text/javascript" src="canvas2image.js"></script>
         <script type='text/javascript'>
           let submit = function() {
-              html2canvas(document.body, {
+            html2canvas(document.body, {
                 useCORS: true,
                 allowTaint : false,
-                  foreignObjectRendering: true,
-                  onrendered: function(canvas) {
-                  //document.body.appendChild(canvas);
-                  Canvas2Image.saveAsJPEG(canvas);
-                  }
-              });
+                foreignObjectRendering: true,
+                onrendered: function(canvas) {
+                //document.body.appendChild(canvas);
+                Canvas2Image.saveAsJPEG(canvas);
+                }
+            });
           };
         </script>
         
@@ -127,6 +127,11 @@
            padding-left: 100px;
            padding-right: 100px;
            }
+
+           #pdf-button {
+             display: block;
+             margin: 0 auto;
+           }
   
            .row {
              display: flex;
@@ -161,7 +166,7 @@
             } 
            }
         </style>
-        </head>
+      </head>
     <body>
       <div class='wrapper'>
           <div class='photo-header'>
@@ -169,7 +174,7 @@
               <h1>Hi!</h1>
               <h2>My name is <span id='name'>Sarah Carter</span></h2>
               <div class='links-nav'>
-                  <a href='' class='nav-link'><i class="fas fa-location-arrow"></i> Renton, WA</a>
+                  <a href='https://www.google.com/maps/search/?api=1&query=Renton%2cWA' class='nav-link'><i class="fas fa-location-arrow"></i> Renton, WA</a>
                   <a href='https://github.com/sarahm16' class='nav-link'><i class="fab fa-github-alt"></i> GitHub</a>
                   <a href='https://sarahm16.github.io/Portfolio/' class='nav-link'><i class="fas fa-rss"></i> Blog</a>
               </div>
@@ -199,11 +204,11 @@
                   </div>
               </div>
               <div class='row'>
-                <button id='render-pdf' onclick='submit();'>Generate PDF resume!</button>
+                <button class='card' id='pdf-button' onclick='submit();'>Generate PDF resume!</button>
               </div>
           </div>
       </div>
 
-    <script src="index.js"></script>
-</body>
-</html>
+      <script src="index.js"></script>
+    </body>
+  </html>

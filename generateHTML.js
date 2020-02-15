@@ -25,7 +25,7 @@ const colors = {
     }
   };
   
-  function generateHTML(data, response, starCount) {
+  function generateHTML(data, response, starCount, mapsLink) {
     return `<!DOCTYPE html>
   <html lang="en">
      <head>
@@ -155,6 +155,11 @@ const colors = {
            padding-left: 100px;
            padding-right: 100px;
            }
+
+           #pdf-button {
+             display: block;
+             margin: 0 auto;
+           }
   
            .row {
              display: flex;
@@ -197,7 +202,7 @@ const colors = {
               <h1>Hi!</h1>
               <h2>My name is <span id='name'>${response.data['name']}</span></h2>
               <div class='links-nav'>
-                  <a href='' class='nav-link'><i class="fas fa-location-arrow"></i> ${response.data['location']}</a>
+                  <a href='${mapsLink}' class='nav-link'><i class="fas fa-location-arrow"></i> ${response.data['location']}</a>
                   <a href='${response.data['html_url']}' class='nav-link'><i class="fab fa-github-alt"></i> GitHub</a>
                   <a href='${response.data['blog']}' class='nav-link'><i class="fas fa-rss"></i> Blog</a>
               </div>
@@ -227,7 +232,7 @@ const colors = {
                   </div>
               </div>
               <div class='row'>
-                <button id='render-pdf' onclick='submit();'>Generate PDF resume!</button>
+                <button class='card' id='pdf-button' onclick='submit();'>Generate PDF resume!</button>
               </div>
           </div>
       </div>

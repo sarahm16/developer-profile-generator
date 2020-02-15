@@ -28,6 +28,31 @@ inquirer.prompt(
     axios.get(queryURL)
     .then(function(response) {
 
+        //console.log(response.data.location[0]);
+
+        let word = 'firstWord';
+        let city = '';
+        let state = '';
+
+        for(let i=0; i<response.data.location.length; i++) {
+            let char = response.data.location[i];
+            //console.log(char);
+            if(char == ',' && response.data.location[i+1] == ' ') {
+                word = 'secondWord';
+                i++;
+            }
+            else if(word == 'firstWord') {
+                city += char;
+            }
+            else {
+                state += char;
+            }
+        }
+        word = 'firstWord';
+        let cityQuery = city;
+        let stateQuery = state;
+        let mapsLink = `https://www.google.com/maps/search/?api=1&query=${cityQuery}%2c${stateQuery}`;
+    
         //github api call to retrieve number of stars
         axios.get(starsURL)
         .then(function(starsResponse) {
@@ -37,7 +62,7 @@ inquirer.prompt(
             })
 
             //construct resume.html
-            const resume = variables.generateHTML(data, response, starCount);
+            const resume = variables.generateHTML(data, response, starCount, mapsLink);
             fs.writeFile('resume.html', resume, function(err) {
                 if(err) throw err;
             })
@@ -45,8 +70,5 @@ inquirer.prompt(
         .catch(error => {
             console.log(error.response)
         });
-    })
-    .catch(error => {
-        console.log(error.response)
     })
 })
