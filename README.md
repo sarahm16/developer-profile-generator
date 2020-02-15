@@ -11,9 +11,9 @@ At the bottom of their resume, the user may click a button to generate a pdf fro
 
 <img src='resume.png' alt='resume'>
 
-# Technologies Used
+## Technologies Used
 
-Inquirer (to prompt user)
-html2canvas (to convert html to canvas)
-canvas2image (to convert canvas to image)
+Inquirer (to prompt user)__
+html2canvas (to convert html to canvas)__
+canvas2image (to convert canvas to image)__
 axios (to make api calls to retrieve information about user from their github account)
