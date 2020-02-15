@@ -10,3 +10,10 @@ This app is designed to dynamically create resumes based on information provided
 At the bottom of their resume, the user may click a button to generate a pdf from resume.html.
 
 <img src='resume.png' alt='resume'>
+
+# Technologies Used
+
+Inquirer (to prompt user)
+html2canvas (to convert html to canvas)
+canvas2image (to convert canvas to image)
+axios (to make api calls to retrieve information about user from their github account)
